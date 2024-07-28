@@ -69,12 +69,14 @@ input,
     display: none;
 }
 
-#result {
+#result,
+#start {
     margin: 2rem auto;
 }
 
 #question,
-#result {
+#result,
+#start {
     font-size: 1.5rem;
     font-weight: bold;
 }

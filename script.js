@@ -2,10 +2,13 @@ const questionContainer = document.getElementById("question-container");
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const startButton = document.getElementById("start-btn");
 const restartButton = document.getElementById("restart-btn");
 const resultDiv = document.getElementById("result");
+const startDiv = document.getElementById("start");
 
 let shuffledQuestions, currentQuestionIndex, score;
+
 
 
 const questions = [{
@@ -180,27 +183,37 @@ const questions = [{
         ],
     },
     {
-        question: "Wie lautet der elbische Name für die prophezeite letzte Schlacht am Ende der Welt?",
+        question: "Wie lautet der elbische Name für die alles entscheidende Schlacht am Ende der Zeit?",
         answers: [
-            { text: "Dagor Bragollach", correct: false },
+            { text: "Dagor Bragolath", correct: false },
             { text: "Dagor-nuin-Giliath", correct: false },
             { text: "Dagor Dagorath", correct: true },
             { text: "Nirnaeth Arnoediad", correct: false },
         ],
-    },
-
+    }
 ]
 
-startQuiz();
+startScreen();
+
+function startScreen() {
+    questionContainer.style.display = "none";
+    startButton.classList.remove("hide");
+    nextButton.classList.add("hide");
+    restartButton.classList.add("hide");
+    resultDiv.classList.add("hide");
+    startDiv.classList.remove("hide");
+    startDiv.innerText = `Willkommen zum Tolkienquiz`;
+}
+
 
 function startQuiz() {
     score = 0;
     questionContainer.style.display = "flex";
     shuffledQuestions = questions.sort(() => Math.random() - 0.5);
     currentQuestionIndex = 0;
+    startButton.classList.add("hide")
     nextButton.classList.remove("hide");
-    restartButton.classList.add("hide");
-    resultDiv.classList.add("hide");
+    startDiv.classList.add("hide");
     setNextQuestion();
 }
 
@@ -264,3 +277,5 @@ function endQuiz() {
     resultDiv.classList.remove("hide");
     resultDiv.innerText = `Your final score: ${score} / ${shuffledQuestions.length}`;
 }
+
+startButton.addEventListener("click", startQuiz);
