@@ -202,7 +202,7 @@ function startScreen() {
     restartButton.classList.add("hide");
     resultDiv.classList.add("hide");
     startDiv.classList.remove("hide");
-    startDiv.innerText = `Willkommen zum Tolkienquiz`;
+    startDiv.innerText = `Willkommen zum Tolkienquiz.`;
 }
 
 
@@ -214,6 +214,17 @@ function startQuiz() {
     startButton.classList.add("hide")
     nextButton.classList.remove("hide");
     startDiv.classList.add("hide");
+    setNextQuestion();
+}
+
+function restartQuiz() {
+    score = 0;
+    questionContainer.style.display = "flex";
+    shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+    currentQuestionIndex = 0;
+    restartButton.classList.add("hide")
+    nextButton.classList.remove("hide");
+    resultDiv.classList.add("hide");
     setNextQuestion();
 }
 
@@ -268,7 +279,7 @@ nextButton.addEventListener("click", () => {
     }
 });
 
-restartButton.addEventListener("click", startQuiz);
+restartButton.addEventListener("click", restartQuiz);
 
 function endQuiz() {
     questionContainer.style.display = "none";
